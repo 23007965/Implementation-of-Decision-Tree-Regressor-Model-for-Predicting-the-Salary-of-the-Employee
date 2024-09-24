@@ -32,6 +32,7 @@ RegisterNumber:  212223230145
 import pandas as pd
 data=pd.read_csv("Salary.csv")
 data.head()
+
 data.info()
 
 from sklearn.preprocessing import LabelEncoder
@@ -40,8 +41,10 @@ data["Position"]=le.fit_transform(data["Position"])
 
 x=data[["Position","Level"]]
 x.head()
+
 y=data[["Salary"]]
 y.head()
+
 from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=2)
 from sklearn.tree import DecisionTreeRegressor
@@ -49,11 +52,14 @@ dt=DecisionTreeRegressor()
 dt.fit(x_train,y_train)
 y_pred=dt.predict(x_test)
 y_pred
+
 from sklearn import metrics
 mse=metrics.mean_squared_error(y_test,y_pred)
 mse
+
 r2=metrics.r2_score(y_test,y_pred)
 r2
+
 dt.predict([[5,6]])
 ```
 ## Output:
